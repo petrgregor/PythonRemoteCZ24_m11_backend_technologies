@@ -2,6 +2,24 @@
 
 Filmová databáze.
 
+## Struktura projektu
+- hollymovies - složka projektu (obsahuje informace o celém projektu)
+  - `__init.py__` - je zde jen proto, aby daná složka byla package
+  - `asgi.py` - nebudeme používat
+  - `settings.py` - nastavení celého projektu
+  - `urls.py` - zde jsou definované url cesty
+  - `wsgi.py` - nebudeme používat
+
+## Spuštění projektu/serveru
+```bash
+python manage.py runserver
+```
+
+Případně můžeme zadat i číslo portu:
+```bash
+python manage.py runserver 8001
+```
+
 ## Funkcionalita
 
 - [ ] informace o filmu
@@ -97,8 +115,19 @@ pip freeze > requirements.txt
 ```bash
 django-admin startproject <nazev_projektu> . 
 ```
+  - nainstaluje dotenv:
+```bash
+pip install python-dotenv
+```
+  - vytvoří soubor `.env`, který bude obsahovat citlivé informace
   - vytvoří git repozitář
     - vytvoří .gitignore soubor 
+    - do .gitignore vloží:
+    ```git
+    /.idea/*
+    /db.sqlite3
+    /.env
+    ```
     - odešle ho na GitHub
     - nasdílí ostatním členům v týmu adresu repozitáře
     - nastaví spolupracovníky (Settings -> Collaborators -> Add people)
@@ -106,6 +135,7 @@ django-admin startproject <nazev_projektu> .
   - naklonují si projekt
   - vytvoří virtuální prostředí (.venv)
   - nainstalují potřebné balíčky ze souboru requirements.txt
+  - vytvoří `.env` soubor obsahující SECURITY_KEY
 ```bash
 pip install -r requirements.txt
 ```
