@@ -27,18 +27,18 @@ python manage.py startapp viewer
 
 > [!WARNING]  
 > Nesmíme zapomenout zaregistrovat aplikaci do souboru `settings.py`:
-```python
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    'viewer',
-]
-```
+> ```python
+> INSTALLED_APPS = [
+>     'django.contrib.admin',
+>     'django.contrib.auth',
+>     'django.contrib.contenttypes',
+>     'django.contrib.sessions',
+>     'django.contrib.messages',
+>     'django.contrib.staticfiles',
+> 
+>     'viewer',
+> ]
+> ```
 
 ### Struktura aplikace
 - `viewer` - složka aplikace
