@@ -25,8 +25,8 @@ python manage.py runserver 8001
 python manage.py startapp viewer
 ```
 
-[!WARNING]  
-Nesmíme zapomenout zaregistrovat aplikaci do souboru `settings.py`:
+> [!WARNING]  
+> Nesmíme zapomenout zaregistrovat aplikaci do souboru `settings.py`:
 ```python
 INSTALLED_APPS = [
     'django.contrib.admin',
