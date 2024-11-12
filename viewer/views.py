@@ -18,7 +18,10 @@ def hello3(request):
     return HttpResponse(f'Hello, {word} world!')
 
 
-
+def hello4(request):
+    word = request.GET.get('word', '')
+    context = {'word': word}
+    return render(request=request, template_name="hello.html", context=context)
 
 
 def add(request, num1, num2):
@@ -34,3 +37,9 @@ def add2(request):
     num1 = int(request.GET.get('num1', 0))
     num2 = int(request.GET.get('num2', 0))
     return HttpResponse(f"{num1} + {num2} = {num1+num2}")
+
+
+# TODO add3 s template
+def add3(request):
+    # http://127.0.0.1:8000/add3?num1=5&num2=6
+    pass
