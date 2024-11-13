@@ -62,6 +62,12 @@ python manage.py startapp viewer
 
 ## Databáze
 
+- [x] genre
+  - [x] id
+  - [x] name
+- [ ] country
+  - [ ] id
+  - [ ] name
 - [ ] movie
   - [ ] id
   - [ ] title_orig
@@ -111,12 +117,6 @@ python manage.py startapp viewer
   - [ ] awards (n:m -> award)
   - [ ] movies_actor (n:m -> movie)
   - [ ] movies_director (n:m -> movie)
-- [ ] genre
-  - [ ] id
-  - [ ] name
-- [ ] country
-  - [ ] id
-  - [ ] name
 - [ ] user
   - [ ] id
   - [ ] username
