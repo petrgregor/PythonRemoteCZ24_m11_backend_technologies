@@ -67,25 +67,36 @@ python manage.py startapp viewer
 - [x] genre
   - [x] id
   - [x] name
-- [ ] country
-  - [ ] id
-  - [ ] name
+- [x] country
+  - [x] id
+  - [x] name
+- [ ] creator
+  - [x] id
+  - [x] first_name
+  - [x] last_name
+  - [x] date_of_birth
+  - [x] date_of_death
+  - [x] nationality -> country
+  - [x] biography
+  - [ ] awards (n:m -> award)
+  - [ ] movies_actor (n:m -> movie)
+  - [ ] movies_director (n:m -> movie)
 - [ ] movie
-  - [ ] id
-  - [ ] title_orig
-  - [ ] title_cz
-  - [ ] year
-  - [ ] length (min)
+  - [x] id
+  - [x] title_orig
+  - [x] title_cz
+  - [x] year
+  - [x] length (min)
   - [ ] novel_id -> novel
   - [ ] productions (n:m -> production_company)
-  - [ ] directors (n:m -> creator)
-  - [ ] actors (n:m -> creator)
-  - [ ] countries (n:m -> country)
-  - [ ] genres (n:m -> genre)
+  - [x] directors (n:m -> creator)
+  - [x] actors (n:m -> creator)
+  - [x] countries (n:m -> country)
+  - [x] genres (n:m -> genre)
   - [ ] rating
   - [ ] medias (n:m -> media)
   - [ ] awards (n:m -> award)
-  - [ ] description
+  - [x] description
   - [ ] reviews -> review
 - [ ] review
   - [ ] id
@@ -108,17 +119,6 @@ python manage.py startapp viewer
   - [ ] id  
   - [ ] title
   - [ ] author -> creator
-- [ ] creator
-  - [ ] id
-  - [ ] first_name
-  - [ ] last_name
-  - [ ] date_of_birth
-  - [ ] date_of_death
-  - [ ] nationality -> country
-  - [ ] biography
-  - [ ] awards (n:m -> award)
-  - [ ] movies_actor (n:m -> movie)
-  - [ ] movies_director (n:m -> movie)
 - [ ] user
   - [ ] id
   - [ ] username
