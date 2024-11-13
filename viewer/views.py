@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from hollymovies.settings import DEBUG
 
 
 def hello(request):
@@ -42,4 +43,12 @@ def add2(request):
 # TODO add3 s template
 def add3(request):
     # http://127.0.0.1:8000/add3?num1=5&num2=6
-    pass
+    num1 = int(request.GET.get('num1', 0))
+    num2 = int(request.GET.get('num2', 0))
+    result = num1 + num2
+    if DEBUG:
+        print(f"num1={num1}, num2={num2}, result={result}")
+    context = {'num1': num1,
+               'num2': num2,
+               'result': result}
+    return render(request, 'add.html', context)
