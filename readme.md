@@ -62,6 +62,8 @@ python manage.py startapp viewer
 
 ## Databáze
 
+### Modely
+
 - [x] genre
   - [x] id
   - [x] name
@@ -129,6 +131,24 @@ python manage.py startapp viewer
   - [ ] movie_id -> movie
   - [ ] actors (n:m -> creators)
   - [ ] description
+
+### Migrace
+Při každé změně v modelech musíme provést migraci databáze:
+- vytvoření migračního skriptu:
+```bash
+python manage.py makemigration
+```
+- spuštění migrace:
+```bash
+python manage.py migrate 
+```
+
+> [!INFO]
+> Migrační skripty by měli být součástí repozitáře.
+
+> [!WARNING]  
+> Databázový soubor není součástí repozitáře, což znamená, že může dojít k situaci, kdy v nějaké
+> branch či commit nebude zdrojový kód odpovídat aktuálnímu schématu v databázi
 
 # Finální projekt - rady
 
