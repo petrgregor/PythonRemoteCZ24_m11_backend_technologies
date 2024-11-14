@@ -150,6 +150,27 @@ python manage.py migrate
 > Databázový soubor není součástí repozitáře, což znamená, že může dojít k situaci, kdy v nějaké
 > branch či commit nebude zdrojový kód odpovídat aktuálnímu schématu v databázi
 
+## DUMP/LOAD databáze (export/import) s UTF znaky
+Nainstalujeme rozšíření:
+```bash
+pip install django-dump-load-utf8
+```
+
+Přidáme `'django_dump_load_utf8'` do `INSTALLED_APPS` v souboru `settings.py`.
+
+Export (DUMP):
+```bash
+python manage.py dumpdatautf8 viewer --output ./files/fixtures.json
+```
+
+Import (LOAD):
+```bash
+python manage.py loaddatautf8 ./files/fixtures.json
+```
+
+> [!WARNING] 
+> Data se do databáze nahrají i se svým id, tedy dojde k přepisu již existujících záznamů.
+
 # Finální projekt - rady
 
 - jeden člen týmu vytvoří projekt

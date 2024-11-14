@@ -1,6 +1,5 @@
 from django.db.models import Model, CharField, DateField, ForeignKey, SET_NULL, TextField, ManyToManyField, \
-    DateTimeField
-from django.forms import IntegerField
+    DateTimeField, IntegerField
 
 
 class Genre(Model):
@@ -54,8 +53,8 @@ class Creator(Model):
 class Movie(Model):
     title_orig = CharField(max_length=64, null=False, blank=False)
     title_cz = CharField(max_length=64, null=True, blank=True)
-    year = IntegerField()
-    length = IntegerField()
+    year = IntegerField(null=True, blank=True)
+    length = IntegerField(null=True, blank=True)
     directors = ManyToManyField(Creator, blank=True, related_name='directing')
     actors = ManyToManyField("viewer.Creator", blank=True, related_name='acting')
     countries = ManyToManyField(Country, blank=True, related_name='movies')
