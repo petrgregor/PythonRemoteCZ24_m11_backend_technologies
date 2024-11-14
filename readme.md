@@ -168,6 +168,83 @@ Import (LOAD):
 python manage.py loaddatautf8 ./files/fixtures.json
 ```
 
+## Dotazy do databáze
+### .all()
+Vrací kolekci všech nalezených záznamů z dané tabulky:
+`Movie.objects.all()`
+
+### .get()
+Vrací jeden nalezený záznam pro dané podmínky:
+`Movie.objects.get(id=3)`
+
+### .filter()
+Vrací kolekci záznamů, které splňují podmínky:
+`Movie.objects.filter(id=3)`
+
+`Movie.objects.filter(year=1994)`
+
+`Movie.objects.filter(title_orig="The Green Mile")`
+
+`drama = Genre.objects.get(name="Drama")`
+
+`Movie.objects.filter(genres=drama)`
+
+`Movie.objects.filter(genres=Genre.objects.get(name="Krimi"))`
+
+`Movie.objects.filter(genres__name="Drama")`
+
+`Creator.objects.filter(date_of_birth__year=1955)`
+
+`Movie.objects.filter(year=1995)`
+
+`Movie.objects.filter(year__gt=1995)` -- `gt` => "větší než" (greater then)
+
+`Movie.objects.filter(year__gte=1995)` -- `gte` => "větší nebo rovno" (greater then equal)
+
+`Movie.objects.filter(year__lt=1995)` -- `lt` => "menší než" (less then)
+
+`Movie.objects.filter(year__lte=1995)` -- `lte` => "menší nebo rovno" (less then equal)
+
+`Movie.objects.filter(title_orig__contains="The")`
+
+`Movie.objects.filter(title_orig__in=['Se7en', 'Forrest Gump'])`
+
+`Movie.objects.exclude(title_orig="Se7en")`
+
+Test, jestli hledaný záznam existuje:
+`Movie.objects.filter(year=1990).exists()`
+
+Spočítáme počet vyhovujících záznamů:
+`Movie.objects.all().count()`
+
+`Movie.objects.filter(year=1994).count()`
+
+Uspořádání výsledků dotazu:
+`Movie.objects.all()`
+
+`Movie.objects.all().order_by('year')` -- uspořádání vzestupně
+
+`Movie.objects.all().order_by('-year')` -- uspořádání sestupně
+
+## Manipulace s daty
+### Vytvoření nového záznamu (create)
+`Genre.objects.create(name="Dokumentární")`
+
+```python
+genre = Genre(name="Sci-fi")
+genre.save()
+```
+
+### Úprava existujícího záznamu (update)
+```python
+scifi = Genre.objects.get(name="Sci-fi")
+scifi.name = "SciFi"
+scifi.save()
+```
+
+### Smazání záznamu (delete)
+`Genre.objects.get(name="SciFi").delete()`
+
 > [!WARNING] 
 > Data se do databáze nahrají i se svým id, tedy dojde k přepisu již existujících záznamů.
 
