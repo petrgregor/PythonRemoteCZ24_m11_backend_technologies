@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ creator.full_name }}</h1>
+    {% if creator.date_of_birth %}
+        <div class="creator-date-of-birth"><b>Datum narození:</b> {{ creator.date_of_birth }}</div>
+    {% endif %}
+    {% if creator.date_of_death %}
+        <div class="creator-date-of-death"><b>Datum úmrtí:</b> {{ creator.date_of_death }}</div>
+    {% endif %}
+    {% if creator.nationality %}
+        <div class="creator-nationality"><b>Národnost:</b> {{ creator.nationality }}</div>
+    {% endif %}
+    {% if creator.directing.all %}
+        <div class="creator-directing"><b>Režie:</b>
+            {% for movie in creator.directing.all %}
+                <a href="{% url 'movie' movie.id %}">{{ movie }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if creator.acting.all %}
+        <div class="creator-acting"><b>Herec:</b>
+            {% for movie in creator.acting.all %}
+                <a href="{% url 'movie' movie.id %}">{{ movie }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <br>
+    {{ creator.biography }}
+{% endblock %}

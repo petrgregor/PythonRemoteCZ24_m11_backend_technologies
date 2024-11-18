@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from viewer.models import Movie
+from viewer.models import Movie, Creator
 
 
 def home(request):
@@ -15,8 +15,20 @@ def movies(request):
 
 
 def movie(request, pk):
-    if Movie.objects.filter(id=pk).exists():
-        movie_ = Movie.objects.get(id=pk)
-        context = {'movie': movie_}
-        return render(request, "movie.html", context)
+    movies_ = Movie.objects.filter(id=pk)
+    if movies_:
+        #movie_ = movies_[0]
+        #context = {'movie': movie_}
+        #return render(request, "movie.html", context)
+        return render(request, "movie.html", {'movie': movies_[0]})
     return movies(request)
+
+
+def creator(request, pk):
+    try:
+        #creator_ = Creator.objects.get(id=pk)
+        #context = {'creator': creator_}
+        #return render(request, "creator.html", context)
+        return render(request, "creator.html", {'creator': Creator.objects.get(id=pk)})
+    except:
+        return home(request)

@@ -7,14 +7,14 @@
     <div class="movie-length"><b>Délka:</b> {{ movie.length_format }}</div>
     <div class="movie-directors"><b>Režie:</b>
         {% for director in movie.directors.all %}
-            {{ director.first_name }} {{ director.last_name }}{% if not forloop.last %}, {% endif %}
+            <a href="{% url 'creator' director.id %}">{{ director.first_name }} {{ director.last_name }}</a>{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádného režiséra.
         {% endfor %}
     </div>
     <div class="movie-actors"><b>Hrají:</b>
         {% for actor in movie.actors.all %}
-            {{ actor.full_name }}{% if not forloop.last %}, {% endif %}
+            <a href="{% url 'creator' actor.id %}">{{ actor.full_name }}</a>{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádného herce.
         {% endfor %}
