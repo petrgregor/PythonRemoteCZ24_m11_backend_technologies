@@ -28,7 +28,7 @@
     </div>
     <div class="movie-genres"><b>Žánry:</b>
         {% for genre in movie.genres.all %}
-            {{ genre }}{% if not forloop.last %}, {% endif %}
+            <a href="{% url 'genre' genre.id %}">{{ genre }}</a>{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádný žánr.
         {% endfor %}

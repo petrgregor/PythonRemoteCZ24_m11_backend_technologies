@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {% for genre in genres %}
+        {% if genre.movies.count %}
+            <a href="{% url 'genre' genre.id %}">{{ genre }} ({{ genre.movies.count }})</a>{% if not forloop.last %}, {% endif %}
+        {% endif %}
+    {% endfor %}
 <h1>Seznam filmů</h1>
     <ul>
         {% for movie in movies %}

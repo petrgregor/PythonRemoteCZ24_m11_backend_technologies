@@ -58,10 +58,10 @@ python manage.py startapp viewer
 - [ ] vkládání/editace/mazání filmu, režiséra, herce,...
 - [ ] hodnocení filmu
 - [ ] filtrování filmů na základě: 
-  - [ ] žánru, 
+  - [x] žánru, (viewer/genre-detail)
   - [ ] roku, 
   - [x] herce, 
-  - [ ] země
+  - [ ] země  # TODO
 - [ ] seřazení filmů podle ratingu, roku,...
 - [ ] vyhledávání filmu/režiséra/herce...
 
