@@ -49,6 +49,9 @@ class Creator(Model):
         return f"{self.first_name} {self.last_name} ({self.date_of_birth})"
         # "Martin Novák (1975-05-06)"
 
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Movie(Model):
     title_orig = CharField(max_length=64, null=False, blank=False)

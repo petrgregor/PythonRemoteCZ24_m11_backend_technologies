@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from viewer.views import movies, home
+from viewer.views import movies, home, movie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('', home, name='home'),
 
     path('movies/', movies, name='movies'),
+    path('movie/<pk>/', movie, name='movie'),
 ]
