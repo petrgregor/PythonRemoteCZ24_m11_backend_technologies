@@ -4,7 +4,7 @@
 <h1>Seznam filmů</h1>
     <ul>
         {% for movie in movies %}
-            <li>{{ movie }}</li>
+            <li><a href="{% url 'movie' movie.id %}">{{ movie }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

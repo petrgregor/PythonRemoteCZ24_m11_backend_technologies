@@ -74,3 +74,11 @@ class Movie(Model):
 
     def __str__(self):
         return f"{self.title_orig} ({self.year})"
+
+    def length_format(self):
+        # 127 min -> 2:07
+        hours = self.length // 60
+        minutes = self.length % 60
+        if minutes < 10:
+            minutes = f"0{minutes}"
+        return f"{hours}:{minutes}"

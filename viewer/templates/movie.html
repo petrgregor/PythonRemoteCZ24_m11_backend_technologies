@@ -3,36 +3,37 @@
 {% block content %}
 <h1>{{ movie.title_orig }}</h1>
     <div class="movie-title-cz">{{ movie.title_cz }}</div>
-    <div class="movie-year">Rok: {{ movie.year }}</div>
-    <div class="movie-length">Délka: {{ movie.length }} minut</div>
-    <div class="movie-directors">Režie:
+    <div class="movie-year"><b>Rok:</b> {{ movie.year }}</div>
+    <div class="movie-length"><b>Délka:</b> {{ movie.length_format }}</div>
+    <div class="movie-directors"><b>Režie:</b>
         {% for director in movie.directors.all %}
             {{ director.first_name }} {{ director.last_name }}{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádného režiséra.
         {% endfor %}
     </div>
-    <div class="movie-actors">Hrají:
+    <div class="movie-actors"><b>Hrají:</b>
         {% for actor in movie.actors.all %}
             {{ actor.full_name }}{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádného herce.
         {% endfor %}
     </div>
-    <div class="movie-countries">Země:
+    <div class="movie-countries"><b>Země:</b>
         {% for country in movie.countries.all %}
             {{ country }}{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádnou zemi.
         {% endfor %}
     </div>
-    <div class="movie-genres">Žánry:
+    <div class="movie-genres"><b>Žánry:</b>
         {% for genre in movie.genres.all %}
             {{ genre }}{% if not forloop.last %}, {% endif %}
         {% empty %}
             Tento film nemá žádný žánr.
         {% endfor %}
     </div>
+    <br>
     <div class="movie-description">
         {{ movie.description }}
     </div>
