@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Seznam tvůrců</h1>
+    <ul>
+        {% for creator in object_list %}
+            <li><a href="{% url 'creator' creator.id %}">{{ creator }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
