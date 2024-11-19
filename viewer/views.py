@@ -78,6 +78,24 @@ class CreatorFormView(FormView):
     form_class = CreatorForm
     success_url = reverse_lazy('creators')
 
+    def form_valid(self, form):
+        print("Form is valid")
+        result = super().form_valid(form)
+        cleaned_data = form.cleaned_data
+        Creator.objects.create(
+            first_name=cleaned_data["first_name"],
+            last_name=cleaned_data["last_name"],
+            date_of_birth=cleaned_data["date_of_birth"],
+            date_of_death=cleaned_data["date_of_death"],
+            nationality=cleaned_data["nationality"],
+            biography=cleaned_data["biography"]
+        )
+        return result
+
+    def form_invalid(self, form):
+        print("Form is invalid")
+        return super().form_invalid(form)
+
 
 def genre(request, pk):
     try:
