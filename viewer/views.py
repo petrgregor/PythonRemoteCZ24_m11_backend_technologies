@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, CreateView, FormView
 
+from viewer.forms import CreatorForm
 from viewer.models import Movie, Creator, Genre
 
 
@@ -69,6 +71,12 @@ def creator(request, pk):
         return render(request, "creator.html", {'creator': Creator.objects.get(id=pk)})
     except:
         return home(request)
+
+
+class CreatorFormView(FormView):
+    template_name = "form.html"
+    form_class = CreatorForm
+    success_url = reverse_lazy('creators')
 
 
 def genre(request, pk):
