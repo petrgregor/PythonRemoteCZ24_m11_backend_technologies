@@ -2,9 +2,14 @@
 
 {% block content %}
 <h1>Seznam tvůrců</h1>
+    <a href="{% url 'creator_create' %}" class="btn btn-primary">Přidat</a>
     <ul>
         {% for creator in object_list %}
-            <li><a href="{% url 'creator' creator.id %}">{{ creator }}</a></li>
+            <li>
+                <a href="{% url 'creator' creator.id %}">{{ creator }}</a>
+                <a href="{% url 'creator_update' creator.id %}">✏️</a>
+                <a href="{% url 'creator_delete' creator.id %}">❌</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, ListView, CreateView, FormView
+from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView
 
 from viewer.forms import CreatorForm
 from viewer.models import Movie, Creator, Genre
@@ -95,6 +95,33 @@ class CreatorFormView(FormView):
     def form_invalid(self, form):
         print("Form is invalid")
         return super().form_invalid(form)
+
+
+class CreatorCreateView(CreateView):
+    template_name = 'form.html'
+    form_class = CreatorForm
+    success_url = reverse_lazy('creators')
+
+    def form_invalid(self, form):
+        print("Form is invalid")
+        return super().form_invalid(form)
+
+
+class CreatorUpdateView(UpdateView):
+    template_name = 'form.html'
+    form_class = CreatorForm
+    success_url = reverse_lazy('creators')
+    model = Creator
+
+    def form_invalid(self, form):
+        print("Form is invalid")
+        return super().form_invalid(form)
+
+
+class CreatorDeleteView(DeleteView):
+    template_name = "confirm_delete.html"
+    model = Creator
+    success_url = reverse_lazy('creators')
 
 
 def genre(request, pk):
