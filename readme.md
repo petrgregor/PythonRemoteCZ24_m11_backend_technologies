@@ -59,10 +59,10 @@ python manage.py startapp viewer
   - [x] vkládání
   - [x] editace
   - [x] mazání
-- [ ] film
-  - [ ] vkládání
-  - [ ] editace
-  - [ ] mazání
+- [ ] film  # TODO
+  - [ ] vkládání  # TODO
+  - [ ] editace  # TODO
+  - [ ] mazání  # TODO
 - [ ] hodnocení filmu
 - [ ] filtrování filmů na základě: 
   - [x] žánru, (viewer/genre-detail)
