@@ -43,6 +43,11 @@ class CreatorForm(ModelForm):
     #nationality = ModelChoiceField(queryset=Country.objects, required=False, label='Národnost')
     #biography = CharField(widget=Textarea, required=False, label="Biografie")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
     def clean_first_name(self):
         """ Upraví zadané jméno tak, aby začínalo velkým písmenem. """
         initial = self.cleaned_data['first_name']

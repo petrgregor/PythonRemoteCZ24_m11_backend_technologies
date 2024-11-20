@@ -3,7 +3,10 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {% comment %}{{ form }}{% endcomment %}
+    <table>{{ form.as_table }}</table>
+    {% comment %}{{ form.as_p }}{% endcomment %}
+    {% comment %}<ul>{{ form.as_ul }}</ul>{% endcomment %}
     <input type="submit" id="id_submit" value="Uložit" class="btn btn-primary">
 </form>
 {% endblock %}
