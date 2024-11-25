@@ -7,15 +7,17 @@
         {% endif %}
     {% endfor %}
 <h1>Seznam filmů</h1>
-    {% if user.is_authenticated %}
+    {% if perms.viewer.add_movie %}
         <a href="{% url 'movie_create' %}" class="btn btn-primary">Přidat</a>
         <hr>
     {% endif %}
     <ul>
         {% for movie in movies %}
             <li><a href="{% url 'movie' movie.id %}">{{ movie }}</a>
-                {% if user.is_authenticated %}
+                {% if perms.viewer.change_movie %}
                     <a href="{% url 'movie_update' movie.id %}"> 📝</a>
+                {% endif %}
+                {% if perms.viewer.delete_movie %}
                     <a href="{% url 'movie_delete' movie.id %}"> 🗑️️</a>
                 {% endif %}
             </li>
