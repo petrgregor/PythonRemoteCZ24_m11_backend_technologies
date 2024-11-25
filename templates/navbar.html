@@ -13,15 +13,38 @@
                 <a class="nav-item nav-link active" href="{% url 'movies' %}">Filmy</a>
                 <a class="nav-item nav-link active" href="{% url 'creators' %}">Tvůrci</a>
 
-                <div class="navbar-nav">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Přidat</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'creator_create' %}">tvůrce</a>
-                            <a class="dropdown-item" href="{% url 'movie_create' %}">film</a>
-                            <a class="dropdown-item" href="{% url 'country_create' %}">zemi</a>
-                            <a class="dropdown-item" href="{% url 'genre_create' %}">žánr</a>
+                {% if user.is_authenticated %}
+                    <div class="navbar-nav">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Přidat</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'creator_create' %}">tvůrce</a>
+                                <a class="dropdown-item" href="{% url 'movie_create' %}">film</a>
+                                <a class="dropdown-item" href="{% url 'country_create' %}">zemi</a>
+                                <a class="dropdown-item" href="{% url 'genre_create' %}">žánr</a>
+                            </div>
                         </div>
+                    </div>
+                {% endif %}
+
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                                {{ user.username }}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item text-right" href="{% url 'logout' %}">Odhlásit</a>
+                            </div>
+                        {% else %}
+                            <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Nepřihlášený uživatel</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item text-right" href="{% url 'login' %}">Přihlásit</a>
+                                <a class="dropdown-item text-right" href="{% url 'signup' %}">Registrovat</a>
+                            </div>
+                        {% endif %}
+
+
                     </div>
                 </div>
 
