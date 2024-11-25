@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path
 
 from viewer.views import movies, home, movie, creator, genre, MoviesView, MoviesTemplateView, MoviesListView, \
-    CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView
+    CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView, GenreCreateView, \
+    GenreUpdateView, GenreDeleteView, CountryCreateView, CountryUpdateView, CountryDeleteView, MovieCreateView, \
+    MovieUpdateView, MovieDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +31,9 @@ urlpatterns = [
     #path('movies/', MoviesView.as_view(), name='movies'),
     path('movies/', MoviesTemplateView.as_view(), name='movies'),
     #path('movies/', MoviesListView.as_view(), name='movies'),
+    path('movie/create/', MovieCreateView.as_view(), name='movie_create'),
+    path('movie/update/<pk>/', MovieUpdateView.as_view(), name='movie_update'),
+    path('movie/delete/<pk>/', MovieDeleteView.as_view(), name='movie_delete'),
     path('movie/<pk>/', movie, name='movie'),
 
     path('creators/', CreatorsListView.as_view(), name='creators'),
@@ -37,5 +42,12 @@ urlpatterns = [
     path('creator/delete/<pk>/', CreatorDeleteView.as_view(), name='creator_delete'),
     path('creator/<pk>/', creator, name='creator'),
 
+    path('genre/create/', GenreCreateView.as_view(), name='genre_create'),
+    path('genre/update/<pk>/', GenreUpdateView.as_view(), name='genre_update'),
+    path('genre/delete/<pk>/', GenreDeleteView.as_view(), name='genre_delete'),
     path('genre/<pk>/', genre, name='genre'),
+
+    path('country/create/', CountryCreateView.as_view(), name='country_create'),
+    path('country/update/<pk>/', CountryUpdateView.as_view(), name='country_update'),
+    path('country/delete/<pk>/', CountryDeleteView.as_view(), name='country_delete'),
 ]

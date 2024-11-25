@@ -12,7 +12,19 @@
                 <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
                 <a class="nav-item nav-link active" href="{% url 'movies' %}">Filmy</a>
                 <a class="nav-item nav-link active" href="{% url 'creators' %}">Tvůrci</a>
-                <a class="nav-item nav-link active" href="{% url 'creator_create' %}">Přidat tvůrce</a>
+
+                <div class="navbar-nav">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Přidat</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'creator_create' %}">tvůrce</a>
+                            <a class="dropdown-item" href="{% url 'movie_create' %}">film</a>
+                            <a class="dropdown-item" href="{% url 'country_create' %}">zemi</a>
+                            <a class="dropdown-item" href="{% url 'genre_create' %}">žánr</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

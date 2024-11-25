@@ -7,9 +7,14 @@
         {% endif %}
     {% endfor %}
 <h1>Seznam filmů</h1>
+    <a href="{% url 'movie_create' %}" class="btn btn-primary">Přidat</a>
+    <hr>
     <ul>
         {% for movie in movies %}
-            <li><a href="{% url 'movie' movie.id %}">{{ movie }}</a></li>
+            <li><a href="{% url 'movie' movie.id %}">{{ movie }}</a>
+                <a href="{% url 'movie_update' movie.id %}"> 📝</a>
+                <a href="{% url 'movie_delete' movie.id %}"> 🗑️️</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
