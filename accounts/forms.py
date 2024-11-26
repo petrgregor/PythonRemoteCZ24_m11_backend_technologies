@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 
 class SignUpForm(UserCreationForm):
@@ -8,8 +9,14 @@ class SignUpForm(UserCreationForm):
             'username': 'Uživatelské jméno',
             'first_name': 'Jméno',
             'last_name': 'Příjmení',
-            'email': 'email',
-            'password1': 'Heslo',
-            'password2': 'Heslo znovu'
+            'email': 'email'
         }
 
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Heslo'}),
+        label="Heslo"
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Heslo znovu'}),
+        label="Heslo znovu"
+    )
