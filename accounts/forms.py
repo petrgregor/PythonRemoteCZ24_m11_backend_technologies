@@ -1,5 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
-from django import forms
+from django.db.transaction import atomic
+from django.forms import DateField, NumberInput, CharField, PasswordInput, Textarea
+
+from accounts.models import Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -12,11 +15,32 @@ class SignUpForm(UserCreationForm):
             'email': 'email'
         }
 
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Heslo'}),
+    password1 = CharField(
+        widget=PasswordInput(attrs={'placeholder': 'Heslo'}),
         label="Heslo"
     )
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Heslo znovu'}),
+    password2 = CharField(
+        widget=PasswordInput(attrs={'placeholder': 'Heslo znovu'}),
         label="Heslo znovu"
     )
+
+    date_of_birth = DateField(widget=NumberInput(attrs={'type': 'date'}),
+                              label='Datum narození',
+                              required=False)
+    biography = CharField(widget=Textarea,
+                          label="Biografie",
+                          required=False)
+
+    @atomic
+    def save(self, commit=True):
+        self.instance.is_active = True
+        user = super().save(commit)  # Creates instance od User
+
+        date_of_birth = self.cleaned_data['date_of_birth']
+        biography = self.cleaned_data['biography']
+        profile = Profile(user=user,
+                          date_of_birth=date_of_birth,
+                          biography=biography)
+        if commit:
+            profile.save()
+        return user
