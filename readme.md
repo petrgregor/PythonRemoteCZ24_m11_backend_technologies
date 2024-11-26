@@ -59,10 +59,10 @@ python manage.py startapp viewer
   - [x] vkládání
   - [x] editace
   - [x] mazání
-- [ ] film  # TODO
-  - [ ] vkládání  # TODO
-  - [ ] editace  # TODO
-  - [ ] mazání  # TODO
+- [x] film   
+  - [x] vkládání  
+  - [x] editace  
+  - [x] mazání  
 - [ ] hodnocení filmu
 - [ ] filtrování filmů na základě: 
   - [x] žánru, (viewer/genre-detail)
@@ -91,8 +91,8 @@ python manage.py startapp viewer
   - [x] nationality -> country
   - [x] biography
   - [ ] awards (n:m -> award)
-  - [ ] movies_actor (n:m -> movie)
-  - [ ] movies_director (n:m -> movie)
+  - [x] movies_actor (n:m -> movie)
+  - [x] movies_director (n:m -> movie)
 - [ ] movie
   - [x] id
   - [x] title_orig
@@ -131,11 +131,11 @@ python manage.py startapp viewer
   - [ ] id  
   - [ ] title
   - [ ] author -> creator
-- [ ] user
-  - [ ] id
-  - [ ] username
-  - [ ] first_name
-  - [ ] last_name
+- [x] user
+  - [x] id
+  - [x] username
+  - [x] first_name
+  - [x] last_name
 - [ ] media
   - [ ] id
   - [ ] type (image/video/text/sound)
