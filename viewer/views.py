@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import Avg
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView
 
-from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm
-from viewer.models import Movie, Creator, Genre, Country
+from accounts.models import Profile
+from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm, ReviewModelForm
+from viewer.models import Movie, Creator, Genre, Country, Review
 
 
 def home(request):
@@ -57,6 +59,45 @@ def movie(request, pk):
         #return render(request, "movie.html", context)
         return render(request, "movie.html", {'movie': movies_[0]})
     return movies(request)
+
+
+class MovieTemplateView(TemplateView):
+    template_name = "movie.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        movie_ = Movie.objects.filter(id=pk)
+        if movie_:
+            context['movie'] = movie_[0]
+            context['form_review'] = ReviewModelForm
+            rating_avg = movie_[0].reviews.aggregate(Avg('rating'))['rating__avg']
+            # print(f"rating_avg: {rating_avg}")
+            context['rating_avg'] = rating_avg
+            return context
+        return reverse_lazy('movies')
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        reviews = Review.objects.filter(movie=context['movie'],
+                                        reviewer=Profile.objects.get(user=request.user))
+        if reviews.exists():
+            review_ = reviews[0]
+            review_.rating = request.POST.get('rating')
+            review_.comment = request.POST.get('comment')
+            review_.save()
+        else:
+            Review.objects.create(
+                movie=context['movie'],
+                reviewer=Profile.objects.get(user=request.user),
+                rating=request.POST.get('rating'),
+                comment=request.POST.get('comment')
+            )
+        movie_ = context['movie']
+        rating_avg = movie_.reviews.aggregate(Avg('rating'))['rating__avg']
+        #print(f"rating_avg: {rating_avg}")
+        context['rating_avg'] = rating_avg
+        return render(request, 'movie.html', context)
 
 
 class MovieCreateView(PermissionRequiredMixin, CreateView):

@@ -47,4 +47,52 @@
     {% if perms.viewer.delete_movie %}
         <a href="{% url 'movie_delete' movie.id %}" class="btn btn-danger">Smazat</a>
     {% endif %}
+
+    <br>
+    <hr>
+    <div>
+        Průměrné hodnocení filmu:
+        {% if rating_avg %}
+            {{ rating_avg }}
+        {% else %}
+            dosud nehodnoceno
+        {% endif %}
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <br>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>{{ form_review }}</table>
+            <button type="submit">Odeslat</button>
+        </form>
+    {% endif %}
+
+    {% if movie.reviews.all %}
+        <br>
+        <hr>
+        {% for review in movie.reviews.all %}
+            <div class="bg-light rounded mt-2 p-2 position-relative">
+                <span>
+                    Uživatel: {{ review.reviewer }}
+                </span>
+                <span class="font-italic">
+                    {{ review.created|date:'d. m. Y H:i' }}
+                </span>
+                {% if review.created != review.updated %}
+                    <span class="font-italic">
+                        (edit {{ review.updated|date:'d. m. Y H:i' }})
+                    </span>
+                {% endif %}
+                <div>
+                    Hodnocení: {{ review.rating }}
+                </div>
+                <div>
+                    Komentář: {{ review.comment }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}

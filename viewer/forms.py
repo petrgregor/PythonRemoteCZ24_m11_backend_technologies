@@ -4,7 +4,7 @@ from datetime import date
 from django.core.exceptions import ValidationError
 from django.forms import Form, CharField, DateField, ModelChoiceField, Textarea, ModelForm, NumberInput
 
-from viewer.models import Country, Creator, Genre, Movie
+from viewer.models import Country, Creator, Genre, Movie, Review
 
 """
 class CreatorForm(Form):
@@ -199,3 +199,13 @@ class MovieModelForm(ModelForm):
             raise ValidationError("Originální název je povinný.")
 
         return cleaned_data
+
+
+class ReviewModelForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']
+        labels = {
+            'rating': 'Hodnocení',
+            'comment': 'Komentář'
+        }

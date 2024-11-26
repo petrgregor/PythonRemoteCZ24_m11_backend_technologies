@@ -63,7 +63,7 @@ python manage.py startapp viewer
   - [x] vkládání  
   - [x] editace  
   - [x] mazání  
-- [ ] hodnocení filmu
+- [x] hodnocení filmu
 - [ ] filtrování filmů na základě: 
   - [x] žánru, (viewer/genre-detail)
   - [ ] roku, 
@@ -110,13 +110,13 @@ python manage.py startapp viewer
   - [ ] awards (n:m -> award)
   - [x] description
   - [ ] reviews -> review
-- [ ] review
-  - [ ] id
-  - [ ] movie_id -> movie
-  - [ ] reviewer -> user 
-  - [ ] rating
-  - [ ] comment 
-  - [ ] time  
+- [x] review
+  - [x] id
+  - [x] movie_id -> movie
+  - [x] reviewer -> user 
+  - [x] rating
+  - [x] comment 
+  - [x] time  
 - [ ] award
   - [ ] id
   - [ ] name (-> award_name)

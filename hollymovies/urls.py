@@ -22,7 +22,7 @@ from accounts.views import SubmittableLoginView, SignUpView, user_logout
 from viewer.views import movies, home, movie, creator, genre, MoviesView, MoviesTemplateView, MoviesListView, \
     CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView, GenreCreateView, \
     GenreUpdateView, GenreDeleteView, CountryCreateView, CountryUpdateView, CountryDeleteView, MovieCreateView, \
-    MovieUpdateView, MovieDeleteView
+    MovieUpdateView, MovieDeleteView, MovieTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('movie/create/', MovieCreateView.as_view(), name='movie_create'),
     path('movie/update/<pk>/', MovieUpdateView.as_view(), name='movie_update'),
     path('movie/delete/<pk>/', MovieDeleteView.as_view(), name='movie_delete'),
-    path('movie/<pk>/', movie, name='movie'),
+    path('movie/<pk>/', MovieTemplateView.as_view(), name='movie'),
 
     path('creators/', CreatorsListView.as_view(), name='creators'),
     path('creator/create/', CreatorCreateView.as_view(), name='creator_create'),
