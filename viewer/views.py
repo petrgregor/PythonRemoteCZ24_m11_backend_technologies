@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.db.models import Avg
+from django.db.models import Avg, Max
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -72,7 +72,9 @@ class MovieTemplateView(TemplateView):
             context['movie'] = movie_[0]
             context['form_review'] = ReviewModelForm
             rating_avg = movie_[0].reviews.aggregate(Avg('rating'))['rating__avg']
-            # print(f"rating_avg: {rating_avg}")
+            #print(f"movie_[0].reviews.aggregate(Avg('rating')) = '{movie_[0].reviews.aggregate(Avg('rating'))}'")
+            #print(f"movie_[0].reviews.aggregate(Max('rating')) = '{movie_[0].reviews.aggregate(Max('rating'))}'")
+            #print(f"rating_avg: {rating_avg}")
             context['rating_avg'] = rating_avg
             return context
         return reverse_lazy('movies')
