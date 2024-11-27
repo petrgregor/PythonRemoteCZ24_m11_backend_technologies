@@ -260,6 +260,19 @@ scifi.save()
 > [!WARNING] 
 > Data se do databáze nahrají i se svým id, tedy dojde k přepisu již existujících záznamů.
 
+## Testy
+V každé aplikaci máme soubor `tests.py`, do kterého můžeme vkládat testy. 
+Můžeme vytvořit další testovací soubory, je ale vhodné, aby název začínal `test*.py`.
+
+Testování spustíme příkazem `python manage.py test` - tento příkaz spustí všechny testy 
+ve všech souborech začínajích `test`.
+
+Příkaz `python manage.py test viewer.test_models` spustí testování definované v souboru `test_models` v 
+aplikaci `viewer`.
+
+Základní testy se spouštějí na virtuální databázi, která obsahuje stejné tabulky jako projektová databáze,
+ale je prázdná.
+
 # Finální projekt - rady
 
 - jeden člen týmu vytvoří projekt
