@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -87,6 +88,36 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if 'test' in sys.argv:  # FIXME
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'test_db.sqlite3',
+    }
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME", default="db"),
+        'USER': os.getenv("DB_USER", default="user1"),
+        'PASSWORD': os.getenv("DB_PASSWORD", default="12345"),
+        'HOST': os.getenv("DB_HOST", default="localhost"),
+        'PORT': os.getenv("DB_PORT", default="1234"),
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'DATABASE': os.getenv("DB_NAME", default="db"),
+        'USER': os.getenv("DB_USER", default="user1"),
+        'PASSWORD': os.getenv("DB_PASSWORD", default="12345"),
+        'HOST': os.getenv("DB_HOST", default="localhost"),
+        'PORT': os.getenv("DB_PORT", default="1234"),
+    }
+}
+"""
 
 
 # Password validation

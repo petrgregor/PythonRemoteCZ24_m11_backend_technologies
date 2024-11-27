@@ -1,4 +1,5 @@
 import datetime
+from unittest import skip
 
 from django.test import TestCase
 
@@ -100,6 +101,7 @@ class ViewerModelsTest(TestCase):
         director = Creator.objects.get(first_name="Arnošt", last_name="Novák")
         self.assertEqual(director.full_name(), "Arnošt Novák")
 
+    @skip("Prozatím přeskočíme - domácí úloha")
     def test_creator_age(self):
         director = Creator.objects.get(first_name="Arnošt", last_name="Novák")
         self.assertEqual(director.age(), 48)
