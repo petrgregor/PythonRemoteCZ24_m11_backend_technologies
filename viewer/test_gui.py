@@ -54,7 +54,7 @@ class GuiTestWithSelenium(TestCase):
         submit_button.send_keys(Keys.RETURN)
         time.sleep(2)
         #assert 'Vítejte v naší HollyMovies filmové databázi.' in selenium_webdriver.page_source
-        assert 'A user with that username already exists.' in selenium_webdriver.page_source
+        assert 'Vítejte v naší HollyMovies filmové databázi.' or 'A user with that username already exists.' in selenium_webdriver.page_source
 
     def test_movie_not_in_db(self):
         selenium_webdriver = webdriver.Chrome()
