@@ -57,9 +57,19 @@ class Creator(Model):
         return f"{self.first_name} {self.last_name}"
 
     def age(self):
+        """ Tomas Jasko
         if self.date_of_birth:
-            today = date.today()
-            return today.year - self.date_of_birth.year  # FIXME - domácí úloha
+            end_date = self.date_of_death or date.today()
+            years = end_date.year - self.date_of_birth.year
+            if (end_date.month < self.date_of_birth.month) or (
+                    end_date.month == self.date_of_birth.month and end_date.day < self.date_of_birth.day):
+                years -= 1
+            return years
+        return None """
+        if self.date_of_birth:
+            end_date = self.date_of_death or date.today()
+            return (end_date.year - self.date_of_birth.year -
+                    ((end_date.month, end_date.day) < (self.date_of_birth.month, self.date_of_birth.day)))
         return None
 
 

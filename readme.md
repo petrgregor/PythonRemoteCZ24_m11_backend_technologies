@@ -273,6 +273,15 @@ aplikaci `viewer`.
 Základní testy se spouštějí na virtuální databázi, která obsahuje stejné tabulky jako projektová databáze,
 ale je prázdná.
 
+### GUI
+Pro testování GUI si nainstalujeme selenium (pro práci s webovou stránkou): 
+`pip install selenium`.
+
+Během testování musí být spuštěn server.
+
+> [!WARNING] 
+> Zde již pracujeme s reálnou aplikací a tedy i s reálnými daty v databázi.
+
 # Finální projekt - rady
 
 - jeden člen týmu vytvoří projekt
