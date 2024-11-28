@@ -4,11 +4,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView, DetailView
 
 from accounts.models import Profile
 from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm, ReviewModelForm
-from viewer.models import Movie, Creator, Genre, Country, Review
+from viewer.models import Movie, Creator, Genre, Country, Review, Image
 
 
 def home(request):
@@ -273,3 +273,8 @@ class CountryDeleteView(PermissionRequiredMixin, DeleteView):
     model = Country
     success_url = reverse_lazy('home')
     permission_required = 'viewer.delete_country'
+
+
+class ImageDetailView(DetailView):
+    model = Image
+    template_name = 'image.html'

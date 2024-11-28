@@ -3,6 +3,17 @@
 {% block content %}
 <h1>{{ movie.title_orig }}</h1>
     <div class="movie-title-cz">{{ movie.title_cz }}</div>
+
+    <div class="movie-images">
+        {% for image in movie.images.all %}
+            <span class="movie-image">
+                <a href="{% url 'image' image.id %}">
+                    <img src="{{ image.image.url }}" alt="{{ image.description }}" width="150px">
+                </a>
+            </span>
+        {% endfor %}
+    </div>
+
     <div class="movie-year"><b>Rok:</b> {{ movie.year }}</div>
     <div class="movie-length"><b>Délka:</b> {{ movie.length_format }}</div>
     <div class="movie-directors"><b>Režie:</b>

@@ -143,6 +143,12 @@ python manage.py startapp viewer
   - [ ] movie_id -> movie
   - [ ] actors (n:m -> creators)
   - [ ] description
+- [x] image
+  - [x] id
+  - [x] image
+  - [x] movie_id -> movie
+  - [x] actors (n:m -> creators)
+  - [x] description
 
 ### Migrace
 Při každé změně v modelech musíme provést migraci databáze:
@@ -281,6 +287,22 @@ Během testování musí být spuštěn server.
 
 > [!WARNING] 
 > Zde již pracujeme s reálnou aplikací a tedy i s reálnými daty v databázi.
+
+## Image
+Nainstalujeme Pillow knihovnu `pip install Pillow`
+
+V modelech můžeme využít `ImageField`: `image = ImageField(upload_to='images/', defaulf=None, null=False, blank=False')` 
+
+Provedeme migraci.
+
+V `settings.py` přidáme cesty:
+```python
+MEDIA_ROOT = BASE_DIR
+MEDIA_URL = 'images/'
+```
+
+Do `urls.py` přidáme za konec seznamu urlpatterns:
+`+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`
 
 # Finální projekt - rady
 

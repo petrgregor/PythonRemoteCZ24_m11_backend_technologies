@@ -1,7 +1,7 @@
 from datetime import date
 
 from django.db.models import Model, CharField, DateField, ForeignKey, SET_NULL, TextField, ManyToManyField, \
-    DateTimeField, IntegerField, CASCADE
+    DateTimeField, IntegerField, CASCADE, ImageField
 
 from accounts.models import Profile
 
@@ -124,3 +124,19 @@ class Review(Model):
     def __str__(self):
         return (f"Reviewer: {self.reviewer}, movie: {self.movie}, rating={self.rating}, "
                 f"comment: {self.comment[:50]}")
+
+
+class Image(Model):
+    image = ImageField(upload_to='images/', default=None, null=False, blank=False)
+    movie = ForeignKey(Movie, on_delete=SET_NULL, null=True, blank=True, related_name='images')
+    actors = ManyToManyField(Creator, blank=True, related_name='images')
+    description = TextField(null=True, blank=True)
+
+    def __repr__(self):
+        return (f"Image(image={self.image}, "
+                f"movie={self.movie}, "
+                f"actors={self.actors}, "
+                f"description={self.description})")
+
+    def __str__(self):
+        return f"Image: {self.image}, {self.description}"

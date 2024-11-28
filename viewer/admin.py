@@ -67,5 +67,6 @@ class MovieAdmin(ModelAdmin):
 admin.site.register(Country)
 admin.site.register(Creator)
 admin.site.register(Genre)
+admin.site.register(Image)
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Review)

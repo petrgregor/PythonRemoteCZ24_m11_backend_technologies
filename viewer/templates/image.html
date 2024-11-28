@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <span class="movie-image">
+            <img src="{{ image.image.url }}" alt="{{ image.description }}" height="800px">
+        </span>
+
+        <div class="image-details mt-4">
+            {% if image.movie %}
+                <div class="mb-2">
+                    Film: <a href="{% url 'movie' image.movie.id %}">{{ image.movie.title_orig }}</a>
+                </div>
+            {% endif %}
+            {% if image.actors.all %}
+                <div class="mb-2">
+                    Herci:
+                    {% for actor in image.actors.all %}
+                        <span class="mb-2">
+                            <a href="{% url 'creator' actor.id %}">{{ actor.full_name }}</a>{% if not forloop.last %}, {% endif %}
+                        </span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if image.description %}
+                <div class="mb-2">
+                    Popis: {{ image.description }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

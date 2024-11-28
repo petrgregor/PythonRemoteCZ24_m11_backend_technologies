@@ -14,15 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
 from accounts.views import SubmittableLoginView, SignUpView, user_logout
+from hollymovies import settings
 from viewer.views import movies, home, movie, creator, genre, MoviesView, MoviesTemplateView, MoviesListView, \
     CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView, GenreCreateView, \
     GenreUpdateView, GenreDeleteView, CountryCreateView, CountryUpdateView, CountryDeleteView, MovieCreateView, \
-    MovieUpdateView, MovieDeleteView, MovieTemplateView
+    MovieUpdateView, MovieDeleteView, MovieTemplateView, ImageDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -53,8 +55,10 @@ urlpatterns = [
     path('country/update/<pk>/', CountryUpdateView.as_view(), name='country_update'),
     path('country/delete/<pk>/', CountryDeleteView.as_view(), name='country_delete'),
 
+    path('image/<pk>/', ImageDetailView.as_view(), name='image'),
+
     #path('accounts/login/', SubmittableLoginView.as_view(), name='login'),
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/logout/', user_logout, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),  # defaultní cesty a views z Djanga
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
