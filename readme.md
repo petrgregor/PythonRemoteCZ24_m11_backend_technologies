@@ -304,6 +304,9 @@ MEDIA_URL = 'images/'
 Do `urls.py` přidáme za konec seznamu urlpatterns:
 `+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`
 
+Aby fungovalo odesílání souboru přes formulář, musí obsahovat:
+`<form method="post" enctype="multipart/form-data">`
+
 # Finální projekt - rady
 
 - jeden člen týmu vytvoří projekt

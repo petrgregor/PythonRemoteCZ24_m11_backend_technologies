@@ -13,7 +13,7 @@
                 <a class="nav-item nav-link active" href="{% url 'movies' %}">Filmy</a>
                 <a class="nav-item nav-link active" href="{% url 'creators' %}">Tvůrci</a>
 
-                {% if perms.viewer.add_creator or perms.viewer.add_movie or perms.viewer.add_country or perms.viewer.add_genre %}
+                {% if perms.viewer.add_creator or perms.viewer.add_movie or perms.viewer.add_country or perms.viewer.add_genre or perms.viewer.add_image %}
                     <div class="navbar-nav">
                         <div class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Přidat</a>
@@ -29,6 +29,9 @@
                                 {% endif %}
                                 {% if perms.viewer.add_genre %}
                                     <a class="dropdown-item" href="{% url 'genre_create' %}">žánr</a>
+                                {% endif %}
+                                {% if perms.viewer.add_image %}
+                                    <a class="dropdown-item" href="{% url 'image_create' %}">obrázek</a>
                                 {% endif %}
                             </div>
                         </div>

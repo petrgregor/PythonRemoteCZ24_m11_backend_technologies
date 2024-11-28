@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView, DetailView
 
 from accounts.models import Profile
-from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm, ReviewModelForm
+from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm, ReviewModelForm, ImageModelForm
 from viewer.models import Movie, Creator, Genre, Country, Review, Image
 
 
@@ -278,3 +278,33 @@ class CountryDeleteView(PermissionRequiredMixin, DeleteView):
 class ImageDetailView(DetailView):
     model = Image
     template_name = 'image.html'
+
+
+class ImageCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'form.html'
+    form_class = ImageModelForm
+    success_url = reverse_lazy('home')
+    permission_required = 'viewer.add_image'
+
+    def form_invalid(self, form):
+        print("Form is invalid")
+        return super().form_invalid(form)
+
+
+class ImageUpdateView(PermissionRequiredMixin, UpdateView):
+    template_name = 'form.html'
+    form_class = ImageModelForm
+    success_url = reverse_lazy('home')
+    permission_required = 'viewer.change_image'
+    model = Image
+
+    def form_invalid(self, form):
+        print("Form is invalid")
+        return super().form_invalid(form)
+
+
+class ImageDeleteView(PermissionRequiredMixin, DeleteView):
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('home')
+    permission_required = 'viewer.delete_image'
+    model = Image

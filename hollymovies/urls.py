@@ -24,7 +24,8 @@ from hollymovies import settings
 from viewer.views import movies, home, movie, creator, genre, MoviesView, MoviesTemplateView, MoviesListView, \
     CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView, GenreCreateView, \
     GenreUpdateView, GenreDeleteView, CountryCreateView, CountryUpdateView, CountryDeleteView, MovieCreateView, \
-    MovieUpdateView, MovieDeleteView, MovieTemplateView, ImageDetailView
+    MovieUpdateView, MovieDeleteView, MovieTemplateView, ImageDetailView, ImageCreateView, ImageUpdateView, \
+    ImageDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -55,6 +56,9 @@ urlpatterns = [
     path('country/update/<pk>/', CountryUpdateView.as_view(), name='country_update'),
     path('country/delete/<pk>/', CountryDeleteView.as_view(), name='country_delete'),
 
+    path('image/create/', ImageCreateView.as_view(), name='image_create'),
+    path('image/update/<pk>/', ImageUpdateView.as_view(), name='image_update'),
+    path('image/delete/<pk>/', ImageDeleteView.as_view(), name='image_delete'),
     path('image/<pk>/', ImageDetailView.as_view(), name='image'),
 
     #path('accounts/login/', SubmittableLoginView.as_view(), name='login'),

@@ -2,6 +2,17 @@
 
 {% block content %}
 <h1>{{ creator.full_name }}</h1>
+
+    <div class="creator-images">
+        {% for image in creator.images.all %}
+            <span class="creator-image">
+                <a href="{% url 'image' image.id %}">
+                    <img src="{{ image.image.url }}" alt="{{ image.description }}" width="150px">
+                </a>
+            </span>
+        {% endfor %}
+    </div>
+
     {% if creator.date_of_birth %}
         <div class="creator-date-of-birth"><b>Datum narození:</b> {{ creator.date_of_birth }}</div>
     {% endif %}

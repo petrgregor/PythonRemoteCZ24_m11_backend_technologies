@@ -29,4 +29,14 @@
             {% endif %}
         </div>
     </div>
+
+    <br>
+    <hr>
+
+    {% if perms.viewer.change_image %}
+        <a href="{% url 'image_update' image.id %}" class="btn btn-primary">Aktualizovat</a>
+    {% endif %}
+    {% if perms.viewer.delete_image %}
+        <a href="{% url 'image_delete' image.id %}" class="btn btn-danger">Smazat</a>
+    {% endif %}
 {% endblock %}
