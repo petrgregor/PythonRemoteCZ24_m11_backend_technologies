@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Avg, Max
 from django.http import HttpResponseRedirect
@@ -5,10 +7,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, ListView, CreateView, FormView, UpdateView, DeleteView, DetailView
+from dotenv import load_dotenv
+import requests
 
 from accounts.models import Profile
 from viewer.forms import CreatorForm, GenreModelForm, CountryModelForm, MovieModelForm, ReviewModelForm, ImageModelForm
 from viewer.models import Movie, Creator, Genre, Country, Review, Image
+
+load_dotenv()
 
 
 def home(request):
@@ -308,3 +314,34 @@ class ImageDeleteView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('home')
     permission_required = 'viewer.delete_image'
     model = Image
+
+
+def search(request):
+    if request.method == 'POST':  # pokud jsme poslali dotaz z formuláře
+        search_string = request.POST.get('search').strip()
+        if len(search_string) > 0:
+            movies_title_orig = Movie.objects.filter(title_orig__contains=search_string)
+            movies_title_cz = Movie.objects.filter(title_cz__contains=search_string)
+            # TODO Vyhledávat filmy podle description
+            # TODO Vyhledávat tvůrce podle jména
+            # TODO Vyhledávat tvůrce podle příjmení
+
+            # Google API
+            url = f"https://www.googleapis.com/customsearch/v1?key={os.getenv('GOOGLE_API_KEY')}&cx={os.getenv('GOOGLE_CX')}&q={search_string}"
+            g_request = requests.get(url)
+            g_json = g_request.json()
+
+            """print(g_json)
+            for g_result in g_json["items"]:
+                print(g_result['title'])
+                print(f"\t{g_result['link']}")
+                print(f"\t{g_result['displayLink']}")
+                print(f"\t{g_result['snippet']}")"""
+
+            context = {'search': search_string,
+                       'movies_title_orig': movies_title_orig,
+                       'movies_title_cz': movies_title_cz,
+                       'g_json': g_json}
+
+            return render(request, 'search.html', context)
+    return render(request, 'home.html')

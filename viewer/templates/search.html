@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Výsledky vyhledávání výrazu: '{{ search }}'</h1>
+
+    <h2>Výsledky pro originální název</h2>
+    <ul>
+        {% for movie in movies_title_orig %}
+            <li><a href="{% url 'movie' movie.id %}">{{ movie.title_orig }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Výsledky pro český název</h2>
+    <ul>
+        {% for movie in movies_title_cz %}
+            <li><a href="{% url 'movie' movie.id %}">{{ movie.title_cz }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if g_json %}
+        <h2>Výsledky vyhledávání na ČSFD.cz</h2>
+        <ul>
+            {% for g_result in g_json.items %}
+                <li><a href="{{ g_result.link }}">{{ g_result.title }}</a><br>
+                    {{ g_result.snippet }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
