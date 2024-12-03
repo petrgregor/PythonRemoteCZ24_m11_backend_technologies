@@ -2,7 +2,7 @@ import re
 from datetime import date
 
 from django.core.exceptions import ValidationError
-from django.forms import Form, CharField, DateField, ModelChoiceField, Textarea, ModelForm, NumberInput
+from django.forms import Form, CharField, DateField, ModelChoiceField, Textarea, ModelForm, NumberInput, IntegerField
 
 from viewer.models import Country, Creator, Genre, Movie, Review, Image
 
@@ -209,6 +209,8 @@ class ReviewModelForm(ModelForm):
             'rating': 'Hodnocení',
             'comment': 'Komentář'
         }
+
+    rating = IntegerField(min_value=1, max_value=10)
 
 
 class ImageModelForm(ModelForm):
