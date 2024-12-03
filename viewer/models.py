@@ -84,6 +84,7 @@ class Movie(Model):
     genres = ManyToManyField(Genre, blank=True, related_name='movies')
     description = TextField(blank=True)
     rating = FloatField(null=True, blank=True)
+    page_views = IntegerField(default=0)
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
 

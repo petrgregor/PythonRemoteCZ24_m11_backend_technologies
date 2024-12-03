@@ -62,6 +62,7 @@
     <br>
     <hr>
     <div>
+        Počet zobrazení filmu: {{ movie.page_views }}.
         Průměrné hodnocení filmu:
         {% if rating_avg %}
             {{ rating_avg|floatformat:1 }}

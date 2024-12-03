@@ -75,6 +75,9 @@ class MovieTemplateView(TemplateView):
         pk = self.kwargs['pk']
         if not Movie.objects.filter(id=pk).exists():
             return HttpResponseRedirect(reverse_lazy('movies'))
+        movie_ = Movie.objects.get(id=pk)
+        movie_.page_views = movie_.page_views + 1
+        movie_.save()
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
