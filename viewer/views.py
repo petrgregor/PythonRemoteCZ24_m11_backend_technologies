@@ -84,11 +84,12 @@ class MovieTemplateView(TemplateView):
         if movie_:
             context['movie'] = movie_[0]
             context['form_review'] = ReviewModelForm
-            rating_avg = movie_[0].reviews.aggregate(Avg('rating'))['rating__avg']
+            #rating_avg = movie_[0].reviews.aggregate(Avg('rating'))['rating__avg']
             #print(f"movie_[0].reviews.aggregate(Avg('rating')) = '{movie_[0].reviews.aggregate(Avg('rating'))}'")
             #print(f"movie_[0].reviews.aggregate(Max('rating')) = '{movie_[0].reviews.aggregate(Max('rating'))}'")
             #print(f"rating_avg: {rating_avg}")
-            context['rating_avg'] = rating_avg
+            #context['rating_avg'] = round(movie_[0].rating, 2)
+            context['rating_avg'] = movie_[0].rating
             return context
         return context
 
@@ -110,7 +111,10 @@ class MovieTemplateView(TemplateView):
             )
         movie_ = context['movie']
         rating_avg = movie_.reviews.aggregate(Avg('rating'))['rating__avg']
+        movie_.rating = rating_avg
+        movie_.save()
         #print(f"rating_avg: {rating_avg}")
+        #context['rating_avg'] = round(rating_avg, 2)
         context['rating_avg'] = rating_avg
         return render(request, 'movie.html', context)
 

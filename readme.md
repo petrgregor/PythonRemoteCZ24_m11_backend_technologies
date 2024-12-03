@@ -70,7 +70,7 @@ python manage.py startapp viewer
   - [x] herce, 
   - [ ] země  # TODO
 - [ ] seřazení filmů podle ratingu, roku,...
-- [ ] vyhledávání filmu/režiséra/herce...
+- [x] vyhledávání filmu/režiséra/herce...
 
 ## Databáze
 
@@ -105,11 +105,11 @@ python manage.py startapp viewer
   - [x] actors (n:m -> creator)
   - [x] countries (n:m -> country)
   - [x] genres (n:m -> genre)
-  - [ ] rating
+  - [x] rating
   - [ ] medias (n:m -> media)
   - [ ] awards (n:m -> award)
   - [x] description
-  - [ ] reviews -> review
+  - [x] reviews -> review
 - [x] review
   - [x] id
   - [x] movie_id -> movie
