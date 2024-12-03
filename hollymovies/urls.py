@@ -20,6 +20,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
 from accounts.views import SubmittableLoginView, SignUpView, user_logout
+from api.views import Movies, MovieDetail, Creators, CreatorDetail
 from hollymovies import settings
 from viewer.views import movies, home, movie, creator, genre, MoviesView, MoviesTemplateView, MoviesListView, \
     CreatorsListView, CreatorFormView, CreatorCreateView, CreatorUpdateView, CreatorDeleteView, GenreCreateView, \
@@ -67,4 +68,9 @@ urlpatterns = [
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/logout/', user_logout, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),  # defaultní cesty a views z Djanga
+
+    path('api/movies/', Movies.as_view(), name='api_movies'),
+    path('api/movie/<pk>/', MovieDetail.as_view(), name='api_movie'),
+    path('api/creators/', Creators.as_view(), name='api_creators'),
+    path('api/creator/<pk>/', CreatorDetail.as_view(), name='api_creator'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
