@@ -97,8 +97,8 @@ class CreatorForm(ModelForm):
         if not initial_first_name and not initial_last_name:
             raise ValidationError("Je potřeba zadat jméno nebo příjmení (nebo oboje).")
 
-        initial_date_of_birth = cleaned_data['date_of_birth']  # FIXME Spadne pro datum v budoucnosti
-        initial_date_of_death = cleaned_data['date_of_death']  # FIXME Spadne pro datum v budoucnosti
+        initial_date_of_birth = cleaned_data.get('date_of_birth')
+        initial_date_of_death = cleaned_data.get('date_of_death')
         if initial_date_of_birth and initial_date_of_death and initial_date_of_death <= initial_date_of_birth:
             raise ValidationError("Datum úmrtí nemůže být dřív, než datum narození.")
 
